@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+
+<body>
+    <%- include("home.ejs")%>
+        <form action="/addProd" method="post">
+            <div class="container mt-5">
+                <div class="row g-3 mt-5">
+                    <div class="col-12">
+                        <label for="inputAddress" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id="inputAddress">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Category</label>
+                        <input type="text" class="form-control" name="category" id="inputAddress2">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label">Price</label>
+                        <input type="text" class="form-control" name="price" id="inputEmail4">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Quantity</label>
+                        <input type="text" class="form-control" name="quantity" id="inputPassword4">
+                    </div>
+
+                    <div class="col-12 justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-primary w-25 mt-4">Add Product</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <% if(msg.length!=0){ %>
+                <div class="alert alert-success d-flex align-items-center w-75 ms-5 mt-4" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg>
+                </div>
+                <div>
+                    <%=msg%>
+                </div>
+            <% } %>
+
+        </form>
+</body>
+
+</html>

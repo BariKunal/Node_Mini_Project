@@ -11,5 +11,43 @@ exports.newProduct=(name,category,price,quantity)=>{
             }
         })
     })
+}
 
+exports.getProducts=()=>{
+    return new Promise((resolve,reject)=>{
+        db.query("select * from product",(err,result)=>{
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve(result)
+            }
+        })
+    })
+}
+
+exports.DeleteProdById=(id)=>{
+    return new Promise((resolve,reject)=>{
+        db.query("delete from product where id=?",[id],(err,result)=>{
+            if(err){
+                reject(err)
+            }
+            else{
+                resolve("Product Deleted...")
+            }
+        })
+    })
+}
+
+exports.UpdatePro=(name,category,price,quantity,id)=>{
+    return new Promise((resolve,reject)=>{
+        db.query("update product set name=?, category=?, price=?, quantity=? where id=?",[name,category,price,quantity,id],(err,result)=>{
+            if(err){            
+                reject(err)
+            }
+            else{
+                resolve("Product Updated...")
+            }
+        })
+    })
 }

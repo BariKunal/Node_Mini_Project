@@ -39,27 +39,27 @@ exports.DeleteProd = ((req, res) => {
         }).catch((err) => {
             res.send(err)
         })
-    }).catch((err)=>{
+    }).catch((err) => {
         res.send(err)
     })
 })
 
-exports.UpdateRender=((req,res)=>{
+exports.UpdateRender = ((req, res) => {
     res.render("updateProd.ejs",
-        {   id:req.query.id,
-            name:req.query.name,
-            category:req.query.category,
-            price:req.query.price,
-            quantity:req.query.quantity
+        {
+            id: req.query.id,
+            name: req.query.name,
+            category: req.query.category,
+            price: req.query.price,
+            quantity: req.query.quantity
         })
-        console.log(id);
-        
+
 })
 
-exports.UpdtProduct=((req,res)=>{
-    let { name, category, price, quantity,id } = req.body
-    let promise = proModel.UpdatePro(name, category, price, quantity,id)
-    promise.then((result)=>{
+exports.UpdtProduct = ((req, res) => {
+    let { name, category, price, quantity, id } = req.body
+    let promise = proModel.UpdatePro(name, category, price, quantity, id)
+    promise.then((result) => {
         let pro = proModel.getProducts()
         pro.then((result) => {
 
@@ -67,7 +67,21 @@ exports.UpdtProduct=((req,res)=>{
         }).catch((err) => {
             res.send(err)
         })
-    }).catch((err)=>[
+    }).catch((err) => {
         res.send("Not Update!!!")
-    ])
+    })
 })
+
+
+exports.searchProd = (req, res) => {
+    let name = req.query.name;
+    let promise = proModel.searchPro(name);
+    promise.then((result) => {
+        res.json(result);
+    }).catch((err) => {
+        console.log("kunal  " + err);
+
+        res.send(err);
+    })
+
+}

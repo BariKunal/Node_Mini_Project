@@ -51,3 +51,16 @@ exports.UpdatePro=(name,category,price,quantity,id)=>{
         })
     })
 }
+
+
+exports.searchPro=(pn)=>{
+    return new Promise((resolve,reject)=>{
+        db.query("select * from product where name like '%"+pn+"%'",(err,result)=>{
+            if(err){
+                reject(err);
+            }else{
+                resolve(result)
+            }
+        })
+    })
+}
